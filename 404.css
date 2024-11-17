@@ -11,22 +11,21 @@ body {
     align-items: center;
     height: 100vh;
     color: #fff;
-    overflow: hidden;
 }
 
 .container {
     text-align: center;
 }
 
-/* Efeito glitch aprimorado */
+/* Estilização do glitch */
 .glitch {
-    font-size: 3em;
+    font-size: 2em;
     font-weight: bold;
     position: relative;
     color: white;
     display: inline-block;
     text-transform: uppercase;
-    animation: glitch-main 1s infinite;
+    animation: glitch 1s infinite;
 }
 
 .glitch::before,
@@ -53,25 +52,25 @@ body {
     animation: glitch-bottom 1.5s infinite linear alternate-reverse;
 }
 
-/* Novas animações do glitch */
-@keyframes glitch-main {
+/* Animações do glitch */
+@keyframes glitch {
     0% {
-        transform: scale(1) skew(0deg);
+        transform: skew(0.3deg);
     }
     20% {
-        transform: scale(1.05) skew(2deg);
+        transform: skew(0.3deg) translate(2px, -2px);
     }
     40% {
-        transform: scale(1.1) skew(-2deg);
+        transform: skew(0.3deg) translate(-2px, 2px);
     }
     60% {
-        transform: scale(1.05) skew(1deg);
+        transform: skew(0.3deg) translate(1px, -1px);
     }
     80% {
-        transform: scale(1.1) skew(-1deg);
+        transform: skew(0.3deg) translate(-1px, 1px);
     }
     100% {
-        transform: scale(1) skew(0deg);
+        transform: skew(0.3deg);
     }
 }
 
@@ -79,14 +78,8 @@ body {
     0% {
         clip: rect(0, 900px, 0, 0);
     }
-    25% {
-        clip: rect(10px, 900px, 30px, 0);
-    }
     50% {
-        clip: rect(0, 900px, 15px, 0);
-    }
-    75% {
-        clip: rect(5px, 900px, 25px, 0);
+        clip: rect(0, 900px, 30px, 0);
     }
     100% {
         clip: rect(0, 900px, 0, 0);
@@ -95,23 +88,17 @@ body {
 
 @keyframes glitch-bottom {
     0% {
-        clip: rect(20px, 900px, 40px, 0);
-    }
-    25% {
-        clip: rect(10px, 900px, 50px, 0);
-    }
-    50% {
         clip: rect(30px, 900px, 60px, 0);
     }
-    75% {
-        clip: rect(25px, 900px, 45px, 0);
+    50% {
+        clip: rect(10px, 900px, 90px, 0);
     }
     100% {
-        clip: rect(20px, 900px, 40px, 0);
+        clip: rect(30px, 900px, 60px, 0);
     }
 }
 
-/* Animação de fade-in para a imagem */
+/* Estilização da imagem */
 img {
     max-width: 100%;
     height: auto;

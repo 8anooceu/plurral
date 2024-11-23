@@ -12,20 +12,22 @@ class ConfettiParticle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = Math.random() * 5 + 5;
+        this.size = Math.random() * 7 + 5; // Tamanhos maiores
         this.color = `hsl(${Math.random() * 360}, 70%, 50%)`;
-        this.speedY = Math.random() * -5 - 5;
-        this.speedX = (Math.random() - 0.5) * 5;
+        this.speedY = Math.random() * -2 - 2; // Velocidade vertical mais lenta
+        this.speedX = (Math.random() - 0.5) * 2; // Velocidade horizontal mais suave
     }
 
     update() {
         this.y += this.speedY;
         this.x += this.speedX;
-        this.speedY += 0.3; // Gravidade
+        this.speedY += 0.1; // Gravidade leve
 
+        // Reinicia confetes que saem da tela
         if (this.y > canvas.height) {
-            this.y = Math.random() * canvas.height;
+            this.y = Math.random() * canvas.height * -1;
             this.x = Math.random() * canvas.width;
+            this.speedY = Math.random() * -2 - 2;
         }
     }
 
@@ -39,7 +41,7 @@ class ConfettiParticle {
 }
 
 // Inicializa confetes
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 150; i++) { // Menos confetes para não ficar sobrecarregado
     confetti.push(
         new ConfettiParticle(
             Math.random() * canvas.width,

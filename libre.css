@@ -2,20 +2,20 @@
 body {
     margin: 0;
     padding: 0;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     font-family: 'Arial', sans-serif;
     color: #ffffff;
-    overflow: hidden;
-    text-align: center;
 }
 
 .container {
-    z-index: 1; /* Fica acima dos confetes */
+    position: relative;
+    z-index: 1; /* Fica acima do fundo e confetes */
+    text-align: center;
 }
 
 h1 {

@@ -13,3 +13,13 @@ window.addEventListener('load', function () {
         }, 300); // Delay para animação suave
     }, 5000); // Tempo de 5 segundos
 });
+// Define a data e hora do redirecionamento
+const redirectionDate = new Date("2024-11-26T15:00:00");
+
+// Verifica a cada segundo se a data atual passou do redirecionamento
+setInterval(() => {
+    const now = new Date();
+    if (now >= redirectionDate) {
+        window.location.href = "https://8anooceu.github.io/Thomaz1/libre.html";
+    }
+}, 1000);

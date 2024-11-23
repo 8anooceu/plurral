@@ -14,7 +14,7 @@ window.addEventListener('load', function () {
     }, 5000); // Tempo de 5 segundos
 });
 // Define a data e hora do redirecionamento
-const redirectionDate = new Date("2024-11-23T17:20:00");
+const redirectionDate = new Date("2024-11-23T17:25:00");
 
 // Verifica a cada segundo se a data atual passou do redirecionamento
 setInterval(() => {

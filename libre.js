@@ -1,70 +1,60 @@
-// Fundo que muda com o movimento do mouse
-const body = document.body;
-
-document.addEventListener("mousemove", (e) => {
-    const x = e.clientX / window.innerWidth;
-    const y = e.clientY / window.innerHeight;
-    const color1 = `rgb(${Math.floor(x * 255)}, ${Math.floor(y * 255)}, 150)`;
-    const color2 = `rgb(${Math.floor(y * 255)}, 150, ${Math.floor(x * 255)})`;
-    body.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
-});
-
-// Configuração do Confete
 const canvas = document.getElementById("confetti");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const confetti = [];
+const confettiArray = [];
+const confettiColors = ["#ff6f61", "#ffb74d", "#4db6ac", "#64b5f6", "#ba68c8"];
+const confettiCount = 200;
 
-class ConfettiParticle {
-    constructor(x, y) {
+class Confetti {
+    constructor(x, y, color) {
         this.x = x;
         this.y = y;
-        this.size = Math.random() * 7 + 5;
-        this.color = `hsl(${Math.random() * 360}, 70%, 50%)`;
-        this.speedY = Math.random() * -2 - 1;
-        this.speedX = (Math.random() - 0.5) * 2;
+        this.color = color;
+        this.size = Math.random() * 7 + 3;
+        this.speedY = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 2 - 1;
     }
 
     update() {
         this.y += this.speedY;
         this.x += this.speedX;
-        this.speedY += 0.1;
 
         if (this.y > canvas.height) {
-            this.y = Math.random() * canvas.height * -1;
+            this.y = 0 - this.size;
             this.x = Math.random() * canvas.width;
-            this.speedY = Math.random() * -2 - 1;
         }
     }
 
     draw() {
-        ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.closePath();
+        ctx.fillStyle = this.color;
         ctx.fill();
     }
 }
 
-for (let i = 0; i < 150; i++) {
-    confetti.push(
-        new ConfettiParticle(
-            Math.random() * canvas.width,
-            Math.random() * canvas.height
-        )
-    );
+function createConfetti() {
+    for (let i = 0; i < confettiCount; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        confettiArray.push(new Confetti(x, y, color));
+    }
 }
 
-function animate() {
+function animateConfetti() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    confetti.forEach((particle) => {
-        particle.update();
-        particle.draw();
+
+    confettiArray.forEach((confetti) => {
+        confetti.update();
+        confetti.draw();
     });
-    requestAnimationFrame(animate);
+
+    requestAnimationFrame(animateConfetti);
 }
 
-animate();
+createConfetti();
+animateConfetti();
